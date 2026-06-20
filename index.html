@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>My Wallet</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: #000; color: #fff; min-height: 100vh; padding: 20px; padding-bottom: 100px; overflow-x: hidden; }
+        h1 { font-size: 28px; font-weight: 700; margin-bottom: 20px; }
+        
+        /* --- 添加卡片表单 --- */
+        .add-card-form { 
+            background: rgba(255,255,255,0.08); padding: 15px; border-radius: 16px; 
+            margin-bottom: 30px; display: flex; flex-direction: column; gap: 10px; 
+        }
+        .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
+        .add-card-form input, .add-card-form select { 
+            flex: 1; min-width: 80px; padding: 12px; border: none; border-radius: 10px; 
+            background: rgba(255,255,255,0.1); color: #fff; outline: none; 
+        }
+        .add-card-form input::placeholder { color: rgba(255,255,255,0.4); }
+        .add-card-form button { 
+            padding: 12px 20px; border: none; border-radius: 10px; 
+            background: #007AFF; color: #fff; font-weight: 600; cursor: pointer; 
+        }
+        .color-options { display: flex; gap: 8px; margin-top: 5px; }
+        .color-opt { width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: 0.3s; }
+        .color-opt.active { border-color: #fff; transform: scale(1.1); }
+
+        /* 纹理预览选项 */
+        .texture-options { display: flex; gap: 8px; margin-top: 5px; }
+        .texture-opt {
+            width: 60px; height: 40px; border-radius: 8px; cursor: pointer;
+            border: 2px solid transparent; transition: 0.3s; position: relative; overflow: hidden;
+        }
+        .texture-opt.active { border-color: #fff; transform: scale(1.05); }
+        .texture-opt span {
+            position: absolute; bottom: 2px; left: 0; right: 0; text-align: center;
+            font-size: 9px; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+
+        /* 照片上传区域 */
+        .photo-upload-area {
+            display: none; margin-top: 5px;
+        }
+        .photo-upload-area.visible { display: block; }
+        .photo-upload-btn {
+            width: 100%; padding: 14px; border: 2px dashed rgba(255,255,255,0.3);
+            border-radius: 12px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.6);
+            cursor: pointer; text-align: center; font-size: 14px; transition: 0.3s;
+        }
+        .photo-upload-btn:hover { border-color: #007AFF; color: #007AFF; background: rgba(0,122,255,0.08); }
+        .photo-upload-btn.has-image { border-style: solid; border-color: #34C759; color: #34C759; padding: 8px; }
+        .photo-preview-wrapper {
+            display: flex; align-items: center; gap: 10px;
+        }
+        .photo-preview {
+            width: 60px; height: 38px; border-radius: 8px; object-fit: cover;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .photo-preview-info { flex: 1; }
+        .photo-preview-name { font-size: 12px; color: #34C759; margin-bottom: 2px; }
+        .photo-preview-hint { font-size: 11px; color: rgba(255,255,255,0.4); }
+        .photo-change-btn {
+            font-size: 12px; color: #007AFF; background: none; border: none; cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* --- 卡包容器 --- */
+        .card-pack {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+            margin: 0 auto 40px;
+        }
+
+        /* 展开/收起按钮 */
+        .pack-toggle {
+            position: absolute;
+            bottom: -44px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: #007AFF;
+            border: none;
+            color: #fff;
+            font-size: 22px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,122,255,0.5);
+            transition: transform 0.3s, background 0.3s;
+            z-index: 200;
+        }
+        .pack-toggle:hover { transform: translateX(-50%) scale(1.1); }
+        .pack-toggle.expanded {
+            transform: translateX(-50%) rotate(45deg);
+            background: #FF3B30;
+        }
+        .pack-toggle.expanded:hover { transform: translateX(-50%) rotate(45deg) scale(1.1); }
+
+        /* 卡片堆叠区域 */
+        .card-stack {
+            position: relative;
+            width: 100%;
+            transition: height 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        /* --- 银行卡样式 --- */
+        .bank-card { 
+            position: absolute; top: 0; left: 0; width: 100%; aspect-ratio: 1.58/1; 
+            border-radius: 16px; padding: 25px; display: flex; flex-direction: column; justify-content: space-between; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6); cursor: pointer; 
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                        z-index 0s 0.4s,
+                        opacity 0.4s ease;
+            overflow: hidden; background-size: cover; background-position: center;
+            transform-origin: bottom center;
+        }
+
+        /* 折叠状态：只露出顶部边缘 */
+        .card-stack.collapsed .bank-card {
+            /* JS 会动态设置 translateY */
+        }
+
+        /* 展开状态：扇形展开 */
+        .card-stack.expanded .bank-card {
+            /* JS 会动态设置 translateY + translateX + rotate */
+        }
+
+        /* 单张卡片 hover */
+        .card-stack.expanded .bank-card:hover {
+            transform: translateY(-20px) scale(1.04) !important;
+            z-index: 99 !important;
+        }
+
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .card-bank { font-size: 18px; font-weight: 600; letter-spacing: 1px; text-shadow: 0 1px 3px rgba(0,0,0,0.5);}
+        .card-number { font-size: 20px; letter-spacing: 2px; font-family: monospace; margin-top: 10px; text-shadow: 0 1px 3px rgba(0,0,0,0.5);}
+        .card-cvv { font-size: 13px; letter-spacing: 1px; opacity: 0.8; font-family: monospace; }
+        .card-cvv .cvv-label { font-size: 10px; opacity: 0.6; margin-right: 4px; }
+        .card-footer { display: flex; justify-content: space-between; align-items: flex-end; }
+        .card-delete { 
+            background: rgba(255,0,0,0.6); border: none; color: #fff; width: 24px; height: 24px; border-radius: 50%; 
+            font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .bank-card:hover .card-delete { opacity: 1; }
+        .card-logo { height: 24px; width: auto; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
+
+        /* --- 密码弹窗 --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); display: none; align-items: center; justify-content: center; z-index: 100; }
+        .modal-overlay.active { display: flex; }
+        .password-box { background: #fff; color: #000; width: 90%; max-width: 360px; border-radius: 20px; padding: 30px 20px; text-align: center; }
+        .password-box h3 { margin-bottom: 5px; font-size: 18px; }
+        .password-box p { font-size: 13px; color: #666; margin-bottom: 25px; }
+        .pwd-input-wrapper { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .pwd-dot { width: 44px; height: 48px; border: 1px solid #ddd; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 24px; transition: all 0.2s ease; }
+        .pwd-dot.filled { background: #000; }
+        .pwd-dot.active { border-color: #007AFF; box-shadow: 0 0 0 2px rgba(0,122,255,0.3); }
+        .hidden-input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+        .cancel-btn { background: none; border: none; color: #007AFF; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+
+        /* 提示文字 */
+        .pack-hint {
+            text-align: center;
+            color: rgba(255,255,255,0.4);
+            font-size: 12px;
+            margin-top: 52px;
+            transition: opacity 0.3s;
+        }
+        .pack-hint.hidden { opacity: 0; }
+    </style>
+</head>
+<body>
+
+    <h1>我的钱包</h1>
+    
+    <form class="add-card-form" id="addCardForm">
+        <div class="form-row">
+            <input type="text" id="bankName" placeholder="银行名称" required>
+            <input type="text" id="cardNum" placeholder="卡号" required>
+        </div>
+        <div class="form-row">
+            <input type="text" id="cvvInput" placeholder="CVV" maxlength="4" inputmode="numeric" pattern="[0-9]*" style="max-width: 120px; flex: 0 0 120px;">
+            <input type="text" id="expiryInput" placeholder="有效期 MM/YY" maxlength="5" style="max-width: 160px; flex: 0 0 160px;">
+        </div>
+        
+        <select id="bgType">
+            <option value="color">纯色渐变</option>
+            <option value="texture">质感纹理</option>
+            <option value="photo">自定义照片</option>
+        </select>
+
+        <div class="color-options" id="colorOptions">
+            <div class="color-opt active" style="background: linear-gradient(135deg, #434343, #000);" data-bg="linear-gradient(135deg, #434343, #000)"></div>
+            <div class="color-opt" style="background: linear-gradient(135deg, #1A2980, #26D0CE);" data-bg="linear-gradient(135deg, #1A2980, #26D0CE)"></div>
+            <div class="color-opt" style="background: linear-gradient(135deg, #8E2DE2, #4A00E0);" data-bg="linear-gradient(135deg, #8E2DE2, #4A00E0)"></div>
+            <div class="color-opt" style="background: linear-gradient(135deg, #F12711, #F5AF19);" data-bg="linear-gradient(135deg, #F12711, #F5AF19)"></div>
+        </div>
+
+        <!-- 纹理选项（可视化预览） -->
+        <div class="texture-options" id="textureOptions" style="display:none;">
+            <div class="texture-opt active" data-texture="carbon" style="background: repeating-linear-gradient(45deg, #1a1a1a 0px, #1a1a1a 2px, #2a2a2a 2px, #2a2a2a 4px), #222;">
+                <span>碳纤维</span>
+            </div>
+            <div class="texture-opt" data-texture="brushed" style="background: linear-gradient(180deg, #3a3a3a 0%, #555 20%, #3a3a3a 40%, #555 60%, #3a3a3a 80%, #555 100%);">
+                <span>拉丝</span>
+            </div>
+            <div class="texture-opt" data-texture="leather" style="background: radial-gradient(circle at 2px 2px, #4a3a2a 1px, transparent 0), radial-gradient(circle at 2px 2px, #3a2a1a 1px, transparent 0), #3a2a1a; background-size: 6px 6px; background-position: 0 0, 3px 3px;">
+                <span>皮革</span>
+            </div>
+            <div class="texture-opt" data-texture="wood" style="background: repeating-linear-gradient(2deg, #5c3d1e 0px, #7a5230 3px, #5c3d1e 5px, #6b4423 8px, #7a5230 11px, #5c3d1e 14px);">
+                <span>木纹</span>
+            </div>
+        </div>
+
+        <!-- 照片上传区域 -->
+        <div class="photo-upload-area" id="photoUploadArea">
+            <div class="photo-upload-btn" id="photoUploadBtn">
+                📷 点击选择照片作为卡面
+            </div>
+            <input type="file" id="photoUpload" accept="image/*" style="display:none;">
+        </div>
+
+        <button type="submit">+ 添加卡片</button>
+    </form>
+
+    <!-- 卡包区域 -->
+    <div class="card-pack" id="cardPack">
+        <div class="card-stack collapsed" id="cardStack"></div>
+        <button class="pack-toggle" id="packToggle">+</button>
+    </div>
+    <div class="pack-hint" id="packHint">点击 + 展开卡包</div>
+
+    <!-- 密码弹窗 -->
+    <div class="modal-overlay" id="pwdModal">
+        <div class="password-box">
+            <h3>请输入支付密码</h3>
+            <p id="modalCardInfo">为尾号 8888 的卡片支付</p>
+            <div class="pwd-input-wrapper" id="dotsContainer">
+                <div class="pwd-dot active"></div><div class="pwd-dot"></div><div class="pwd-dot"></div>
+                <div class="pwd-dot"></div><div class="pwd-dot"></div><div class="pwd-dot"></div>
+            </div>
+            <input type="number" inputmode="numeric" pattern="[0-9]*" class="hidden-input" id="realPwdInput" autocomplete="off">
+            <button class="cancel-btn" id="cancelPwdBtn">取消</button>
+        </div>
+    </div>
+
+<script>
+    let cards = [
+        { id: 1, bank: '招商银行', number: '6214 8300 1111 2222', cvv: '***', expiry: '12/28', bg: 'linear-gradient(135deg, #434343, #000)' },
+        { id: 2, bank: 'Apple Card', number: '4532 8888 9999 1234', cvv: '***', expiry: '06/27', bg: 'linear-gradient(135deg, #1A2980, #26D0CE)' },
+        { id: 3, bank: '工商银行', number: '5123 4500 1111 2222', cvv: '***', expiry: '03/29', bg: 'carbon' }
+    ];
+    let currentPwd = '';
+    let isExpanded = false;
+    let nextId = 4;
+
+    // 表单联动逻辑
+    const bgType = document.getElementById('bgType');
+    const colorOptions = document.getElementById('colorOptions');
+    const textureOptions = document.getElementById('textureOptions');
+    const photoUploadArea = document.getElementById('photoUploadArea');
+    const photoUploadBtn = document.getElementById('photoUploadBtn');
+    const photoUpload = document.getElementById('photoUpload');
+    let selectedColor = 'linear-gradient(135deg, #434343, #000)';
+    let selectedTexture = 'carbon';
+    let uploadedPhotoData = null; // 存储上传照片的 data URL
+
+    bgType.addEventListener('change', (e) => {
+        const val = e.target.value;
+        colorOptions.style.display = val === 'color' ? 'flex' : 'none';
+        textureOptions.style.display = val === 'texture' ? 'flex' : 'none';
+        photoUploadArea.classList.toggle('visible', val === 'photo');
+    });
+
+    document.querySelectorAll('.color-opt').forEach(opt => {
+        opt.addEventListener('click', () => {
+            document.querySelectorAll('.color-opt').forEach(o => o.classList.remove('active'));
+            opt.classList.add('active');
+            selectedColor = opt.dataset.bg;
+        });
+    });
+
+    // 纹理选项点击
+    document.querySelectorAll('.texture-opt').forEach(opt => {
+        opt.addEventListener('click', () => {
+            document.querySelectorAll('.texture-opt').forEach(o => o.classList.remove('active'));
+            opt.classList.add('active');
+            selectedTexture = opt.dataset.texture;
+        });
+    });
+
+    // 照片上传：点击区域触发文件选择
+    photoUploadBtn.addEventListener('click', () => {
+        photoUpload.click();
+    });
+
+    photoUpload.addEventListener('change', () => {
+        const file = photoUpload.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+            uploadedPhotoData = ev.target.result;
+            // 更新上传按钮为预览模式
+            const fileName = file.name.length > 16 ? file.name.slice(0, 14) + '…' : file.name;
+            photoUploadBtn.classList.add('has-image');
+            photoUploadBtn.innerHTML = `
+                <div class="photo-preview-wrapper">
+                    <img class="photo-preview" src="${uploadedPhotoData}" alt="preview">
+                    <div class="photo-preview-info">
+                        <div class="photo-preview-name">✓ ${fileName}</div>
+                        <div class="photo-preview-hint">已选作卡面</div>
+                    </div>
+                    <button type="button" class="photo-change-btn" onclick="event.stopPropagation(); document.getElementById('photoUpload').click();">更换</button>
+                </div>
+            `;
+        };
+        reader.readAsDataURL(file);
+    });
+
+    // CVV 输入格式化：只允许数字
+    document.getElementById('cvvInput').addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4);
+    });
+
+    // 有效期格式化：自动加斜杠
+    document.getElementById('expiryInput').addEventListener('input', function(e) {
+        let v = this.value.replace(/[^0-9]/g, '').slice(0, 4);
+        if (v.length >= 3) v = v.slice(0, 2) + '/' + v.slice(2);
+        this.value = v;
+    });
+
+    // Logo 识别
+    function getCardLogo(number) {
+        const cleanNum = number.replace(/\s/g, '');
+        if (/^4/.test(cleanNum)) return `<svg class="card-logo" viewBox="0 0 700 400"><path fill="#1A1F71" d="M293.2 220.4l27.8-130.6h44.3l-27.8 130.6h-44.3zm182.4-126.8c-8.6-3.2-22.1-6.6-39.1-6.6-43.1 0-73.5 21.9-73.7 53.2-.3 23.1 21.6 36 38.1 43.7 16.9 7.9 22.6 13 22.5 20-.1 10.7-13.5 15.6-25.9 15.6-17.3 0-26.5-2.4-40.7-8.3l-5.6-2.5-6.1 28.5c10.2 4.5 29 8.4 48.4 8.6 45.8 0 75.6-21.6 75.9-55.1.2-18.3-11.5-32.2-36.6-43.7-15.2-7.5-24.4-12.5-24.3-20 .1-6.7 7.9-13.9 24.9-13.9 14.3-.2 24.7 2.9 32.8 6.2l3.9 1.8 6.1-28.5zM600 89.8h-34.2c-10.6 0-18.5 2.9-23.2 13.5l-65.5 117.1h46.6s7.6-15.8 9.3-19.5h56.7c1.3 5.7 5.3 19.5 5.3 19.5h41.2L600 89.8zm-54.2 78.3c3.6-9.3 17.4-44.9 17.4-44.9s3.6-9.3 5.9-14.5l3 14.1s8.4 38.5 10.1 45.3h-36.4zM253.5 89.8l-42.9 97.8-4.6-22.1c-8-25.9-32.9-54.1-60.8-68.3l39.1 123.2h46.3l68.8-130.6h-45.9z"/><path fill="#F9A533" d="M177.3 89.8H104l-.6 3.4c57.1 13.9 94.9 48.1 109.8 86.5l-15.8-76.4c-2.7-10.4-10.7-13.3-20.1-13.5z"/></svg>`;
+        if (/^5[1-5]/.test(cleanNum)) return `<svg class="card-logo" viewBox="0 0 700 400"><circle cx="250" cy="200" r="100" fill="#EB001B"/><circle cx="450" cy="200" r="100" fill="#F79E1B"/><path fill="#FF5F00" d="M350 126.8c23.6 18.3 38.8 46.9 38.8 79.2s-15.2 60.9-38.8 79.2c-23.6-18.3-38.8-46.9-38.8-79.2s15.2-60.9 38.8-79.2z"/></svg>`;
+        if (/^62/.test(cleanNum)) return `<svg class="card-logo" viewBox="0 0 700 400"><path fill="#E21836" d="M180 100h100c15 0 25 10 20 25l-40 150c-5 15-20 25-35 25H125c-15 0-25-10-20-25l40-150c5-15 20-25 35-25z"/><path fill="#00447C" d="M300 100h100c15 0 25 10 20 25l-40 150c-5 15-20 25-35 25H245c-15 0-25-10-20-25l40-150c5-15 20-25 35-25z"/><path fill="#007B84" d="M420 100h100c15 0 25 10 20 25l-40 150c-5 15-20 25-35 25H365c-15 0-25-10-20-25l40-150c5-15 20-25 35-25z"/></svg>`;
+        return `<div style="font-size:12px; opacity:0.8;">BANK</div>`;
+    }
+
+    // 计算卡包高度
+    function getStackHeight() {
+        const cardHeight = 228; // 360 / 1.58
+        if (!isExpanded) {
+            // 折叠：只露出顶部一小截，整体高度约一张卡片+一点偏移
+            return cardHeight + (cards.length - 1) * 16;
+        } else {
+            // 展开：每张卡片垂直偏移
+            return cardHeight + (cards.length - 1) * 55;
+        }
+    }
+
+    // 渲染卡片
+    function renderCards() {
+        const cardStack = document.getElementById('cardStack');
+        cardStack.innerHTML = '';
+
+        // 更新展开/收起状态 class
+        cardStack.className = isExpanded ? 'card-stack expanded' : 'card-stack collapsed';
+        cardStack.style.height = getStackHeight() + 'px';
+
+        cards.forEach((card, index) => {
+            const cardEl = document.createElement('div');
+            cardEl.className = 'bank-card';
+            
+            // 背景
+            if (card.bg.startsWith('data:image')) {
+                // 照片背景
+                cardEl.style.backgroundImage = `url(${card.bg})`;
+                cardEl.style.backgroundSize = 'cover';
+                cardEl.style.backgroundPosition = 'center';
+                // 加暗色叠加层保证文字可读
+                cardEl.style.position = 'absolute';
+                const overlay = document.createElement('div');
+                overlay.style.cssText = 'position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%);border-radius:16px;z-index:0;';
+                cardEl.appendChild(overlay);
+            } else if (card.bg.startsWith('linear')) {
+                cardEl.style.backgroundImage = card.bg;
+            } else {
+                const textures = {
+                    carbon: {
+                        bg: 'repeating-linear-gradient(45deg, #1a1a1a 0px, #1a1a1a 2px, #2d2d2d 2px, #2d2d2d 4px)',
+                        extra: 'background-color: #222; background-blend-mode: overlay;'
+                    },
+                    brushed: {
+                        bg: 'repeating-linear-gradient(0deg, #3a3a3a 0px, #4a4a4a 1px, #3a3a3a 2px, #555 3px, #3a3a3a 4px, #4a4a4a 5px, #3a3a3a 6px)',
+                        extra: 'background-color: #404040;'
+                    },
+                    leather: {
+                        bg: 'radial-gradient(ellipse at 30% 20%, #5a4a3a 0%, transparent 50%), radial-gradient(circle at 2px 2px, #4a3a2a 0.8px, transparent 0), radial-gradient(circle at 2px 2px, #3a2a1a 0.8px, transparent 0)',
+                        extra: 'background-color: #3a2a1a; background-size: 100% 100%, 6px 6px, 6px 6px; background-position: 0 0, 0 0, 3px 3px;'
+                    },
+                    wood: {
+                        bg: 'repeating-linear-gradient(2deg, #5c3d1e 0px, #7a5230 2px, #5c3d1e 4px, #6b4423 6px, #7a5230 8px, #5c3d1e 10px, #8b5e3c 12px, #5c3d1e 14px)',
+                        extra: 'background-color: #5c3d1e;'
+                    }
+                };
+                const t = textures[card.bg];
+                if (t) {
+                    cardEl.style.backgroundImage = t.bg;
+                    // 应用额外样式
+                    t.extra.split(';').filter(Boolean).forEach(s => {
+                        const [k, v] = s.split(':').map(x => x.trim());
+                        if (k && v) cardEl.style[k] = v;
+                    });
+                } else {
+                    cardEl.style.background = '#333';
+                }
+            }
+
+            // 位置：折叠 vs 展开
+            if (!isExpanded) {
+                // 折叠状态：卡片叠在一起，只露出顶部一小条
+                const offset = (cards.length - 1 - index) * 16;
+                const rotate = (cards.length - 1 - index) * 2;
+                cardEl.style.zIndex = index + 1;
+                cardEl.style.transform = `translateY(${offset}px) rotate(${rotate}deg)`;
+            } else {
+                // 展开状态：扇形展开
+                const y = index * 55;
+                const rotate = (index - (cards.length - 1) / 2) * 3;
+                const x = (index - (cards.length - 1) / 2) * 10;
+                cardEl.style.zIndex = index + 1;
+                cardEl.style.transform = `translateY(${y}px) translateX(${x}px) rotate(${rotate}deg)`;
+            }
+
+            // CVV 显示
+            const cvvDisplay = card.cvv || '***';
+
+            cardEl.innerHTML = `
+                <div class="card-header" style="position:relative;z-index:1;">
+                    <div class="card-bank">${card.bank}</div>
+                    <button class="card-delete" data-id="${card.id}">×</button>
+                </div>
+                <div class="card-number" style="position:relative;z-index:1;">${card.number}</div>
+                <div class="card-footer" style="position:relative;z-index:1;">
+                    <div class="card-cvv"><span class="cvv-label">CVV</span>${cvvDisplay}</div>
+                    ${getCardLogo(card.number)}
+                </div>
+            `;
+
+            // 点击卡片弹出密码框
+            cardEl.addEventListener('click', (e) => {
+                if (e.target.classList.contains('card-delete')) return;
+                openPwdModal(card);
+            });
+
+            // 删除按钮
+            cardEl.querySelector('.card-delete').addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (confirm(`确定删除 ${card.bank} 尾号 ${card.number.slice(-4)} 吗？`)) {
+                    cards = cards.filter(c => c.id !== card.id);
+                    renderCards();
+                }
+            });
+
+            cardStack.appendChild(cardEl);
+        });
+
+        // 更新提示
+        document.getElementById('packHint').textContent = isExpanded ? '点击 − 收起卡包' : '点击 + 展开卡包';
+    }
+
+    // 展开/收起切换
+    document.getElementById('packToggle').addEventListener('click', () => {
+        isExpanded = !isExpanded;
+        const btn = document.getElementById('packToggle');
+        btn.classList.toggle('expanded', isExpanded);
+        renderCards();
+    });
+
+    // 添加卡片
+    document.getElementById('addCardForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const bank = document.getElementById('bankName').value.trim();
+        const num = document.getElementById('cardNum').value.trim();
+        const cvv = document.getElementById('cvvInput').value.trim();
+        const expiry = document.getElementById('expiryInput').value.trim();
+
+        if (!bank || !num) return;
+
+        const bgVal = bgType.value;
+        if (bgVal === 'color') {
+            addCardData(bank, num, cvv, expiry, selectedColor);
+        } else if (bgVal === 'texture') {
+            addCardData(bank, num, cvv, expiry, selectedTexture);
+        } else if (bgVal === 'photo') {
+            if (uploadedPhotoData) {
+                addCardData(bank, num, cvv, expiry, uploadedPhotoData);
+            } else {
+                // 没选照片，提示用户
+                photoUploadBtn.style.borderColor = '#FF3B30';
+                photoUploadBtn.style.color = '#FF3B30';
+                photoUploadBtn.textContent = '⚠️ 请先选择一张照片';
+                setTimeout(() => {
+                    photoUploadBtn.style.borderColor = '';
+                    photoUploadBtn.style.color = '';
+                    photoUploadBtn.innerHTML = '📷 点击选择照片作为卡面';
+                }, 2000);
+            }
+        }
+    });
+
+    function addCardData(bank, number, cvv, expiry, bg) {
+        // 格式化卡号：每4位加空格
+        const formatted = number.replace(/\s/g, '').replace(/(.{4})/g, '$1 ').trim();
+        cards.push({
+            id: nextId++,
+            bank,
+            number: formatted,
+            cvv: cvv || '***',
+            expiry: expiry || '',
+            bg
+        });
+        renderCards();
+        // 清空表单
+        document.getElementById('bankName').value = '';
+        document.getElementById('cardNum').value = '';
+        document.getElementById('cvvInput').value = '';
+        document.getElementById('expiryInput').value = '';
+        // 重置照片上传状态
+        uploadedPhotoData = null;
+        photoUpload.value = '';
+        photoUploadBtn.classList.remove('has-image');
+        photoUploadBtn.innerHTML = '📷 点击选择照片作为卡面';
+    }
+
+    // 密码弹窗逻辑
+    function openPwdModal(card) {
+        const modal = document.getElementById('pwdModal');
+        document.getElementById('modalCardInfo').textContent = `为尾号 ${card.number.slice(-4)} 的卡片支付`;
+        modal.classList.add('active');
+        currentPwd = '';
+        updatePwdDots();
+        setTimeout(() => document.getElementById('realPwdInput').focus(), 100);
+    }
+
+    document.getElementById('cancelPwdBtn').addEventListener('click', () => {
+        document.getElementById('pwdModal').classList.remove('active');
+    });
+
+    document.getElementById('pwdModal').addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) {
+            e.currentTarget.classList.remove('active');
+        }
+    });
+
+    document.getElementById('realPwdInput').addEventListener('input', (e) => {
+        currentPwd = e.target.value.replace(/[^0-9]/g, '').slice(0, 6);
+        updatePwdDots();
+        if (currentPwd.length === 6) {
+            setTimeout(() => {
+                alert('支付密码已输入完成');
+                document.getElementById('pwdModal').classList.remove('active');
+            }, 300);
+        }
+    });
+
+    function updatePwdDots() {
+        const dots = document.querySelectorAll('.pwd-dot');
+        dots.forEach((dot, i) => {
+            dot.classList.remove('filled', 'active');
+            if (i < currentPwd.length) {
+                dot.classList.add('filled');
+            } else if (i === currentPwd.length) {
+                dot.classList.add('active');
+            }
+        });
+    }
+
+    // 初始渲染
+    renderCards();
+</script>
+</body>
+</html>
