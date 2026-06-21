@@ -320,7 +320,7 @@
 </head>
 <body>
 
-    <h1>我的钱包</h1>
+    <h1>Wallet</h1>
 
     <form class="add-card-form" id="addCardForm" novalidate>
         <div class="card-type-selector">
@@ -468,6 +468,21 @@
                 <div class="form-group"><label class="form-label" for="ticketSeatNo">座位号</label><input type="text" id="ticketSeatNo" placeholder=""></div>
             </div>
         </div>
+
+          <!-- eSIM字段 -->        
+<div id="fieldsTicket" style="display:none;">            
+<div class="form-section-title">eSIM</div>            
+<div class="form-row">                
+<div class="form-group"><label class="form-label" for="ticketAirline">服务商/运营商</label><input type="text" id="ticketAirline" placeholder=""></div>                
+</div>            
+</div>            
+     
+<div class="form-row">                
+<div class="form-group"><label class="form-label" for="ticketPassenger">号码</label><input type="text" id="ticketPassenger" placeholder=""></div>                
+<div class="form-group"><label class="form-label" for="ticketSeat"></label>                    
+<select id="ticketSeat"><option value="Economy">+86（中国大陆）</option><option value="Business">+1（美国）</option><option value="First">+852（香港）</option><option value="First">+850（朝鲜）</option><option value="First">+82（韩国）</option></select>                
+</div>            
+</div>            
 
         <div id="bgStyleSection">
             <div class="form-section-title">卡面样式</div>
