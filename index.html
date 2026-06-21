@@ -469,19 +469,7 @@
             </div>
         </div>
 
-          <!-- eSIM字段 -->        
-<div id="fieldsTicket" style="display:none;">            
-<div class="form-section-title">eSIM</div>            
-<div class="form-row">                
-<div class="form-group"><label class="form-label" for="ticketAirline">服务商/运营商</label><input type="text" id="ticketAirline" placeholder=""></div>                
-</div>            
-</div>            
-     
-<div class="form-row">                
-<div class="form-group"><label class="form-label" for="ticketPassenger">号码</label><input type="text" id="ticketPassenger" placeholder=""></div>                
-<div class="form-group"><label class="form-label" for="ticketSeat"></label>                    
-<select id="ticketSeat"><option value="Economy">+86（中国大陆）</option><option value="Business">+1（美国）</option><option value="First">+852（香港）</option><option value="First">+850（朝鲜）</option><option value="First">+82（韩国）</option></select>                
-</div>            
+         
 </div>            
 
         <div id="bgStyleSection">
@@ -607,7 +595,7 @@
     <!-- 购买兑换卡弹窗 -->
     <div class="buy-redeem-overlay" id="buyRedeemModal">
         <div class="buy-redeem-box">
-            <h3>🎫 购买兑换卡</h3><p>从银行卡余额扣款购买兑换卡</p>
+            <h3>购买兑换卡</h3><p>从银行卡余额扣款购买兑换卡</p>
             <div class="form-section-title" style="color:#666;">选择面值</div>
             <div class="redeem-amount-grid" id="redeemAmountGrid">
                 <div class="redeem-amount-opt" data-value="25"><div class="redeem-amount-val">25</div><div class="redeem-amount-unit">CNY</div></div>
@@ -623,6 +611,16 @@
                 <option value="AUD">AUD $ 澳元</option><option value="CAD">CAD $ 加元</option><option value="THB">THB ฿ 泰铢</option>
                 <option value="INR">INR ₹ 印度卢比</option>
                  <option value="HUD">HUD   沪币</option>
+                 <option value="JYD">JYD  金圆券</option>
+                 <option value="YYD">YYD  银圆券</option>
+                 <option value="DEM">DEM  德国马克</option>
+                 <option value="BEK">BEK  贝壳</option>
+                 <option value="QCY">QCY  清朝银</option>
+                 <option value="TOD">TOD  铜钱</option>
+                 <option value="LAP">LAP  粮票</option>
+                 <option value="HVD">HVD  三角洲哈夫币</option><option value="PDD">PDD  拼多多砍一刀</option>
+<option value="TMD">TMD  时间元</option><option value="MNB">MNB  迷你币</option>
+<option value="QQD">QQD  Q币</option> <option value="IQD">IQD  智商付款</option>
             </select>
             <div style="font-size:12px;color:#999;margin-bottom:6px;">付款银行卡</div>
             <select class="redeem-pay-source-select" id="redeemPaySource"></select>
@@ -917,19 +915,19 @@
                 else if (isOctopus && (!card.bg || card.bg.startsWith('linear-gradient(135deg, #434343'))) cardEl.style.background = 'linear-gradient(135deg, #9B30FF, #6A0DAD)';
                 else applyBackground(cardEl, card.bg);
                 const balance = (card.balance || 0).toFixed(2), typeTag = isSuica ? 'Suica' : isOctopus ? '八达通' : '交通卡';
-                cardEl.innerHTML = `<div class="transit-header"><div><div class="transit-name">${card.name||card.bank||'交通卡'}</div>${isSuica?'<div class="suica-logo" style="margin-top:4px;">Suica</div>':''}${isOctopus?'<div class="octopus-logo" style="margin-top:4px;">🐙 八達通</div>':''}</div><div style="display:flex;align-items:center;gap:8px;"><div class="transit-type-tag">${typeTag}</div><button class="card-delete" data-id="${card.id}">×</button></div></div><div class="transit-balance-area"><div class="transit-balance-label">余 额</div><div class="transit-balance-value"><span class="currency-sm">¥</span>${balance}</div></div><div class="transit-footer"><div class="transit-number">${card.number||''}</div><div class="transit-nfc">📡</div></div>`;
+                cardEl.innerHTML = `<div class="transit-header"><div><div class="transit-name">${card.name||card.bank||'交通卡'}</div>${isSuica?'<div class="suica-logo" style="margin-top:4px;">Suica</div>':''}${isOctopus?'<div class="octopus-logo" style="margin-top:4px;">八達通oCtopus</div>':''}</div><div style="display:flex;align-items:center;gap:8px;"><div class="transit-type-tag">${typeTag}</div><button class="card-delete" data-id="${card.id}">×</button></div></div><div class="transit-balance-area"><div class="transit-balance-label">余 额</div><div class="transit-balance-value"><span class="currency-sm">¥</span>${balance}</div></div><div class="transit-footer"><div class="transit-number">${card.number||''}</div><div class="transit-nfc"></div></div>`;
             } else if (type === 'redeem') {
                 cardEl = document.createElement('div'); cardEl.className = 'redeem-card';
                 if (card.bg && !card.bg.startsWith('linear-gradient(135deg, #434343')) applyBackground(cardEl, card.bg);
                 else cardEl.style.background = 'linear-gradient(135deg, #FFD700, #FF8C00)';
                 const symbol = getCurrencySymbol(card.currency || 'CNY'), isUsed = card.redeemStatus === 'used';
-                cardEl.innerHTML = `<div class="redeem-header"><div><div class="redeem-title">${card.redeemName||'兑换卡'}</div></div><div style="display:flex;align-items:center;gap:8px;"><div class="redeem-type-tag">🎫 兑换卡</div><button class="card-delete" data-id="${card.id}">×</button></div></div><div class="redeem-code-area"><div class="redeem-code">${card.redeemCode||''}</div></div><div class="redeem-footer"><div class="redeem-value"><span class="currency-sm">${symbol}</span>${(card.redeemValue||0).toFixed(2)}</div><div class="redeem-status ${isUsed?'used':'active'}">${isUsed?'已使用':'未使用'}</div></div>`;
+                cardEl.innerHTML = `<div class="redeem-header"><div><div class="redeem-title">${card.redeemName||'兑换卡'}</div></div><div style="display:flex;align-items:center;gap:8px;"><div class="redeem-type-tag">兑换卡</div><button class="card-delete" data-id="${card.id}">×</button></div></div><div class="redeem-code-area"><div class="redeem-code">${card.redeemCode||''}</div></div><div class="redeem-footer"><div class="redeem-value"><span class="currency-sm">${symbol}</span>${(card.redeemValue||0).toFixed(2)}</div><div class="redeem-status ${isUsed?'used':'active'}">${isUsed?'已使用':'未使用'}</div></div>`;
             } else if (type === 'ticket') {
                 cardEl = document.createElement('div'); cardEl.className = 'ticket-card';
                 if (card.bg && !card.bg.startsWith('linear-gradient(135deg, #434343')) applyBackground(cardEl, card.bg);
                 else cardEl.style.background = 'linear-gradient(135deg, #1A2980, #26D0CE)';
                 const seatMap = {Economy:'经济舱',Business:'商务舱',First:'头等舱'};
-                cardEl.innerHTML = `<div class="ticket-header"><div><div class="ticket-airline">${card.airline||'航空公司'}</div><div style="font-size:11px;opacity:0.7;margin-top:2px;">${card.flightNo||''}</div></div><div style="display:flex;align-items:center;gap:8px;"><div class="ticket-flight-tag">✈️ 机票</div><button class="card-delete" data-id="${card.id}">×</button></div></div><div class="ticket-route"><div class="ticket-city">${card.fromCity||'---'}</div><div class="ticket-arrow">✈</div><div class="ticket-city">${card.toCity||'---'}</div></div><div class="ticket-info-row"><div class="ticket-info-item"><div class="ticket-info-label">日期</div><div class="ticket-info-val">${card.date||'--'}</div></div><div class="ticket-info-item"><div class="ticket-info-label">时间</div><div class="ticket-info-val">${card.time||'--'}</div></div><div class="ticket-info-item"><div class="ticket-info-label">登机口</div><div class="ticket-info-val">${card.gate||'--'}</div></div><div class="ticket-info-item"><div class="ticket-info-label">座位</div><div class="ticket-info-val">${card.seatNo||'--'}</div></div></div><div class="ticket-divider"></div><div class="ticket-bottom"><div class="ticket-passenger">${card.passenger||'--'}</div><div class="ticket-class">${seatMap[card.seatClass]||card.seatClass||'经济舱'}</div></div>`;
+                cardEl.innerHTML = `<div class="ticket-header"><div><div class="ticket-airline">${card.airline||'航空公司'}</div><div style="font-size:11px;opacity:0.7;margin-top:2px;">${card.flightNo||''}</div></div><div style="display:flex;align-items:center;gap:8px;"><div class="ticket-flight-tag"> 机票</div><button class="card-delete" data-id="${card.id}">×</button></div></div><div class="ticket-route"><div class="ticket-city">${card.fromCity||'---'}</div><div class="ticket-arrow">✈</div><div class="ticket-city">${card.toCity||'---'}</div></div><div class="ticket-info-row"><div class="ticket-info-item"><div class="ticket-info-label">日期</div><div class="ticket-info-val">${card.date||'--'}</div></div><div class="ticket-info-item"><div class="ticket-info-label">时间</div><div class="ticket-info-val">${card.time||'--'}</div></div><div class="ticket-info-item"><div class="ticket-info-label">登机口</div><div class="ticket-info-val">${card.gate||'--'}</div></div><div class="ticket-info-item"><div class="ticket-info-label">座位</div><div class="ticket-info-val">${card.seatNo||'--'}</div></div></div><div class="ticket-divider"></div><div class="ticket-bottom"><div class="ticket-passenger">${card.passenger||'--'}</div><div class="ticket-class">${seatMap[card.seatClass]||card.seatClass||'经济舱'}</div></div>`;
             } else {
                 cardEl = document.createElement('div'); cardEl.className = 'bank-card';
                 applyBackground(cardEl, card.bg);
