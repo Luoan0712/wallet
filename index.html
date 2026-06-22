@@ -328,7 +328,7 @@
             <div class="card-type-btn" data-type="transit">交通卡</div>
             <div class="card-type-btn" data-type="redeem">兑换卡</div>
             <div class="card-type-btn" data-type="ticket">机票</div>
-           
+
         </div>
 
         <!-- 银行卡字段 -->
@@ -339,27 +339,31 @@
                     <label class="form-label" for="cardBrand">卡片组织</label>
                     <select id="cardBrand">
                         <option value="">自动识别</option>
-                        <option value="Visa">Visa</option>
-                        <option value="Mastercard">Mastercard</option>
-                        <option value="UnionPay">银联 UnionPay</option>
-                        <option value="JCB">JCB</option>
-                        <option value="AMEX">American Express</option>
-                        <option value="Discover">Discover</option>
-                        <option value="DinersClub">Diners Club</option>
-                        <option value="Maestro">Maestro</option>
-                        <option value="Mir">Mir (МИР)</option>
+                        <option value="Visa">Visa(4890)</option>
+                        <option value="Mastercard">Mastercard(5150/2769)</option>
+                        <option value="UnionPay">银联 UnionPay(6279)</option>
+                        <option value="JCB">JCB(3685)</option>
+                        <option value="AMEX">American Express(3495/3750)</option>
+                        <option value="Discover">Discover(5483)</option>
+                        <option value="DinersClub">Diners Club(6839)</option>
+                        <option value="Maestro">Maestro(5020)</option>
+                        <option value="Mir">Mir (2200-2204)</option>
                         <option value="Interac">Interac</option>
-                        <option value="Elo">Elo</option>
-                        <option value="RuPay">RuPay</option>
+                        <option value="Elo">Elo(401179)</option>
+                        <option value="RuPay">RuPay(6509)</option>
+                        <optgroup label="虚拟组织">
+                            <option value="Luoan e-Cards">Luoan e-Cards(9E63)</option>
+                            <option value="DEDI">DEDI(14E9)</option>
+
+                        </optgroup>
+
                     </select>
-                </div>
                 </div>
             </div>
             <div class="form-section-title">卡片信息</div>
             <div class="form-row">
-                <div class="form-group"><label class="form-label" for="bankName">银行名称</label><input type="text" id="bankName" placeholder=""></div>
-                <div class="form-group"><label class="form-label" for="cardNum">卡号</label> <input type="text" id="cardnumInput" placeholder=" " maxlength="19" inputmode="numeric" pattern="[0-9]*"></div>
-                 
+                <div class="form-group"><label class="form-label" for="bankName">银行名称</label><input type="text" id="bankName" placeholder="" maxlength="10"></div>
+                <div class="form-group"><label class="form-label" for="cardNum">卡号</label><input type="text" id="cardNum" placeholder="上限19字符" maxlength="19"></div>
             </div>
             <div class="form-section-title">持卡人信息</div>
             <div class="form-row"><div class="form-group full"><label class="form-label" for="holderName">持卡人姓名</label><input type="text" id="holderName" placeholder=""></div></div>
@@ -368,7 +372,6 @@
                 <div class="form-group"><label class="form-label" for="expiryInput">有效期</label><input type="text" id="expiryInput" placeholder="MM/YY" maxlength="5"></div>
             </div>
             <div class="form-row"><div class="form-group full"><label class="form-label">余额</label><input type="text" value="¥0.00" disabled style="opacity:0.5;cursor:not-allowed;"></div></div>
-            
         </div>
 
         <!-- 交通卡字段 -->
@@ -380,43 +383,32 @@
                     <select id="transitProvider">
                         <option value="">请选择交通卡</option>
                         <optgroup label="中国/China">
-                            <optgroup label="省份/直辖市">
-                            <optgroup label="北京/Beijing">
+                            <optgroup>北京/Peking</optgroup>
                             <option value="北京一卡通">北京一卡通</option>
-                            <optgroup label="上海/shanghai">
+                            <optgroup>上海/Shanghai</optgroup>
                             <option value="上海交通卡">上海交通卡</option>
-                        <optgroup label="广东/guangdong">
+                            <optgroup>广东/Guangdong</optgroup>
                             <option value="深圳通">深圳通</option>
                             <option value="羊城通">羊城通 (广州)</option>
+                            <option value="岭南通">岭南通</option>
                             <option value="岭南通·羊城通">岭南通·羊城通</option>
-                          
-                            <optgroup label="湖北/hubei">
+                             <option value="岭南通·羊城通">岭南通·羊城通(交通联合)</option>
+                            <option value="岭南通·红海通">岭南通·红海通(交通联合)</option>
+                            <optgroup>湖北/Hubei</optgroup>
                             <option value="武汉通">武汉通</option>
-                            <optgroup label="四川/sichuan">
+                            <optgroup>四川/Sichuan</optgroup>
                             <option value="天府通">天府通 (成都)</option>
-                            <optgroup label="香港/HK"></optgroup>
+                            <optgroup>香港</optgroup>
                             <option value="八达通">octoput八达通(HongKong)</option>
                             <optgroup>China T-Union(交通联合)</optgroup>
-                            <option value="岭南通·羊城通">岭南通·羊城通(交通联合)</option>
-                            <option value="岭南通·红海通">岭南通·红海通(交通联合)</option>
-                            <optgroup label="浙江/zhejiang"></optgroup>
+                            <optgroup>浙江/Zhejiang</optgroup>
                             <option value="杭州通">杭州通(交通联合)</option>
                             <optgroup label="日本/Japan">
                                 <option value="Suica">Suica</option>
                                 <option value="ICOCA">ICOCA</option>
+                                <option value="TOICA"></option>
                                 <optgroup label="韩国/Korea">
                                     <option value="T-money">T-money</option>
-
-
-
-
-                                    </optgroup>
-                                    </optgroup>
-                                        </optgroup>
-                                        </optgroup>
-                                      </optgroup>
-                                     </optgroup>
-                                    </optgroup>
                                 </optgroup>
                             </optgroup>
                       </optgroup>
@@ -432,9 +424,8 @@
                 <div class="form-group"><label class="form-label" for="transitNum">卡号</label><input type="text" id="transitNum" placeholder="12位数卡号（必填）"></div>
                 <div class="form-group"><label class="form-label" for="transitBalance">初始余额 (¥)</label><input type="number" id="transitBalance" placeholder="0.00" step="0.01" min="0" inputmode="decimal" value="0"></div>
             </div>
-            <div class="form-row"><div class="form-group full"><label class="form-label" for="transitHolder">持卡人姓名</label><input type="text" id="transitHolder" placeholder="（选填）"></div></div>
+            <div class="form-row"><div class="form-group full"><label class="form-label" for="transitHolder">持卡人姓名</label><input type="text" id="transitHolder" placeholder="（选填）" maxlength="50"></div></div>
         </div>
-
 
         <!-- 兑换卡字段 -->
         <div id="fieldsRedeem" style="display:none;">
@@ -452,46 +443,7 @@
                             <option value="PlayStation"> PlayStation Store</option>
                             <option value="Xbox">Xbox Live</option>
                             <option value="Nintendo eShop"> Nintendo eShop</option>
-                            <optgroup>其他/other</optgroup>
-                            <option value="Steam wallet">Steam Wallet-25</option>
-                            <option value="steam wallet">Steam Wallet-120</option>
 
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-            <div class="form-section-title">兑换卡信息</div>
-            <div class="form-row"><div class="form-group full"><label class="form-label" for="redeemCode">兑换码 (25位)</label><input type="text" id="redeemCode" placeholder="XXXXX-XXXXX-XXXXX-XXXXX-XXXXX" maxlength="29" style="font-family:monospace;letter-spacing:1px;"></div></div>
-            <div class="form-row">
-                <div class="form-group"><label class="form-label" for="redeemName">卡名称</label><input type="text" id="redeemName" placeholder=""></div>
-                <div class="form-group"><label class="form-label" for="redeemValue">面值</label><input type="number" id="redeemValue" placeholder="25" step="1" min="1" inputmode="decimal"></div>
-            </div>
-            <div class="form-row">
-                <div class="form-group"><label class="form-label" for="redeemCurrency">货币单位</label>
-                    <select id="redeemCurrency">
-                        <option value="CNY">CNY ¥ 人民币</option><option value="USD">USD $ 美元</option><option value="EUR">EUR € 欧元</option>
-                        <option value="GBP">GBP £ 英镑</option><option value="JPY">JPY ¥ 日元</option><option value="KRW">KRW ₩ 韩元</option>
-                        <option value="HKD">HKD $ 港币</option><option value="TWD">TWD $ 新台币</option><option value="SGD">SGD $ 新加坡元</option>
-                        <option value="AUD">AUD $ 澳元</option><option value="CAD">CAD $ 加元</option><option value="THB">THB ฿ 泰铢</option>
-                        <option value="INR">INR ₹ 印度卢比</option>
-                        <option value="HUD">HUD   沪币</option>
-
-                         <!-- 兑换卡字段 -->
-        <div id="Steam Card" style="display:none;">
-            <div class="form-section-title">兑换卡类型</div>
-            <div class="form-row">
-                <div class="form-group full">
-                    <label class="form-label" for="redeemProvider">兑换卡</label>
-                    <select id="redeemProvider">
-                        <option value="">选择兑换卡</option>
-                        <optgroup label="选择">
-                            <option value="App Store"> App Store & iTunes</option>
-                            <option value="Apple Gift Card"> Apple Gift Card</option>
-                            <option value="Google Play"> Google Play</option>
-                            <option value="Steam"> Steam Gift Card</option>
-                            <option value="PlayStation"> PlayStation Store</option>
-                            <option value="Xbox">Xbox Live</option>
-                            <option value="Nintendo eShop"> Nintendo eShop</option>
 
                         </optgroup>
                     </select>
@@ -586,7 +538,7 @@
     </div>
 
     <div class="card-pack" id="cardPack"><div class="card-stack collapsed" id="cardStack"></div><button class="pack-toggle" id="packToggle">+</button></div>
-    
+   
 
     <div class="transaction-section" id="txSection"><h2>交易记录</h2><div class="transaction-list" id="txList"><div class="tx-empty">暂无交易记录</div></div></div>
 
@@ -610,7 +562,7 @@
         <div class="result-box">
             <div class="result-icon success" id="resultIcon">✓</div>
             <div class="result-title" id="resultTitle">支付成功</div>
-            <div class="result-amount"><span class="currency" id="resultCurrency">¥</span><span id="resultAmount">0.00</span></div>
+            <div class="result-amount"><span class="currency" id="resultCurrency">HUD</span><span id="resultAmount">0.00</span></div>
             <div class="result-detail" id="resultDetail"></div>
             <button class="result-btn success" id="resultBtn">完成</button>
         </div>
@@ -691,13 +643,14 @@
                 <option value="CNY">CNY ¥ 人民币</option><option value="USD">USD $ 美元</option><option value="EUR">EUR € 欧元</option>
                 <option value="GBP">GBP £ 英镑</option><option value="JPY">JPY ¥ 日元</option><option value="KRW">KRW ₩ 韩元</option>
                 <option value="HKD">HKD $ 港币</option><option value="TWD">TWD $ 新台币</option><option value="SGD">SGD $ 新加坡元</option>
-                <option value="AUD">AUD $ 澳元</option><option value="CAD">CAD $ 加元</option><option value="THB">THB ฿ 泰铢</option>
-                <option value="INR">INR ₹ 印度卢比
+                <option value="AUD">AUD $ 澳元</option><option value="THB">THB ฿ 泰铢</option>
+                
                  <option value="HUD">HUD   沪币</option><option value="MIK">MIK   小米米金</option>
-                 <option value="JYD">JYD  金圆券</option><option value="HFD">HFD   话费付</option>
-                 <option value="YYD">YYD  银圆券
+                 <option value="JYD">JYD  金圆券
                  <option value="DEM">DEM  德国马克
-                 <option value="QCY">QCY  清朝银
+                    <option value="KPW">KPW ₩ 朝鲜元</option>
+
+
                     
                  </option>
    
@@ -742,7 +695,7 @@
 
     function generateCaptchaCode() {
         let code = '';
-        for (let i = 0; i < 5; i++) code += CAPTCHA_CHARS[Math.floor(Math.random() * CAPTCHA_CHARS.length)];
+        for (let i = 0; i < 6; i++) code += CAPTCHA_CHARS[Math.floor(Math.random() * CAPTCHA_CHARS.length)];
         return code;
     }
 
@@ -758,7 +711,7 @@
     function renderCaptchaInputs() {
         const row = document.getElementById('captchaInputRow');
         row.innerHTML = '';
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 6; i++) {
             const inp = document.createElement('input');
             inp.type = 'text';
             inp.maxLength = 1;
@@ -944,7 +897,7 @@
     function getCardBrand(number, manualBrand) {
         if (manualBrand) return manualBrand;
         const c = number.replace(/\s/g, '');
-        if (/^34|^37/.test(c)) return 'AMEX'; if (/^4/.test(c)) return 'Visa'; if (/^5[1-5]/.test(c) || /^2[2-7]/.test(c)) return 'Mastercard';
+        if (/^34|^37/.test(c)) return 'AMEX'; if (/^4/.test(c)) return 'Visa'; if (/^5[1-5]/.test(c) || /^2[2-7]/.test(c)) return 'Mastercard'; if (/^9E63/.test(c)) return 'Luoan e-Cards';if (/14E9/.test(c)) return 'DEDI';
         if (/^62/.test(c)) return 'UnionPay'; if (/^35/.test(c)) return 'JCB'; if (/^6011|^65|^64[4-9]/.test(c)) return 'Discover';
         if (/^30[0-5]|^36|^38|^39/.test(c)) return 'DinersClub'; if (/^50|^56|^57|^58|^59|^63|^67/.test(c)) return 'Maestro'; if (/^220[0-4]/.test(c)) return 'Mir';
         return '';
@@ -1040,6 +993,7 @@
     function getTransitSub(provider) {
         if (provider === '八达通') return 'octopus';
         return 'general';
+    
     }
 
     // 添加卡片
@@ -1190,7 +1144,7 @@
         card.balance = (card.balance||0) + amount; const c2 = cards.find(c => c.id === card.id); if (c2) c2.balance = card.balance;
         document.getElementById('topupModal').classList.remove('active');
         const now = new Date(), timeStr = formatTime(now), formattedAmount = amount.toFixed(2);
-        transactions.unshift({ bank: card.name||card.bank, last4, holder: card.holder||'', amount: formattedAmount, time: timeStr, type: 'topup', currency: 'HUD' });
+        transactions.unshift({ bank: card.name||card.bank, last4, holder: card.holder||'', amount: formattedAmount, time: timeStr, type: 'topup', currency: 'CNY' });
         saveTransactions(); renderTransactions(); renderCards(); saveCards();
         setTimeout(() => { document.getElementById('resultIcon').className='result-icon success'; document.getElementById('resultIcon').textContent='✓'; document.getElementById('resultTitle').textContent='充值成功'; document.getElementById('resultAmount').textContent=formattedAmount; document.getElementById('resultCurrency').textContent='¥'; document.getElementById('resultDetail').innerHTML=`充值卡片：<span>${card.name||card.bank} 尾号 ${last4}</span><br>当前余额：<span>¥${card.balance.toFixed(2)}</span><br>交易时间：<span>${timeStr}</span><br>交易单号：<span>${generateOrderNo()}</span>`; document.getElementById('resultBtn').className='result-btn success'; document.getElementById('resultBtn').textContent='完成'; document.getElementById('resultModal').classList.add('active'); }, 300);
     });
@@ -1299,7 +1253,7 @@
 
 </script>
 <style>
-/* ===== 基础重置 ===== */
+    /* ===== 基础重置 ===== */
 * {
     margin: 0;
     padding: 0;
@@ -1310,7 +1264,7 @@
 
 /* ===== 全局样式 ===== */
 body {
-    background: #0a0a0f;
+    background: #000;
     color: #fff;
     min-height: 100vh;
     padding: 20px;
@@ -1318,13 +1272,11 @@ body {
     overflow-x: hidden;
     padding-top: env(safe-area-inset-top, 20px);
     padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
-    /* 更丰富的背景光晕 */
+    /* 背景光晕 */
     background-image: 
-        radial-gradient(ellipse at 15% 20%, rgba(0, 122, 255, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 85% 30%, rgba(175, 82, 222, 0.12) 0%, transparent 45%),
-        radial-gradient(ellipse at 50% 80%, rgba(255, 204, 0, 0.08) 0%, transparent 40%),
-        radial-gradient(ellipse at 10% 70%, rgba(52, 199, 89, 0.06) 0%, transparent 35%),
-        radial-gradient(ellipse at 90% 90%, rgba(255, 59, 48, 0.05) 0%, transparent 30%);
+        radial-gradient(ellipse at 20% 30%, rgba(0, 122, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(175, 82, 222, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(255, 204, 0, 0.04) 0%, transparent 40%);
     background-attachment: fixed;
 }
 
@@ -1333,70 +1285,61 @@ h1 {
     font-weight: 700;
     margin-bottom: 24px;
     letter-spacing: -0.5px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0.5));
+    background: linear-gradient(135deg, #fff 60%, rgba(255, 255, 255, 0.6));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-/* ===== 高透明毛玻璃工具类 ===== */
-.glass-light {
-    background: rgba(255, 255, 255, 0.04);
+/* ===== 毛玻璃工具类 ===== */
+.glass {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.glass-strong {
+    background: rgba(28, 28, 30, 0.8);
     backdrop-filter: blur(40px) saturate(1.8);
     -webkit-backdrop-filter: blur(40px) saturate(1.8);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-.glass-ultra {
-    background: rgba(255, 255, 255, 0.025);
-    backdrop-filter: blur(60px) saturate(2);
-    -webkit-backdrop-filter: blur(60px) saturate(2);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px) saturate(1.6);
+    -webkit-backdrop-filter: blur(16px) saturate(1.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-.glass-modal {
-    background: rgba(20, 20, 30, 0.55);
-    backdrop-filter: blur(60px) saturate(2);
-    -webkit-backdrop-filter: blur(60px) saturate(2);
+/* ===== 表单样式 ===== */
+.add-card-form {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px) saturate(1.6);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-}
-
-.glass-card-light {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(30px) saturate(1.6);
-    -webkit-backdrop-filter: blur(30px) saturate(1.6);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.025);
-    border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-/* ===== 表单样式 - 高透明 ===== */
-.add-card-form {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(40px) saturate(1.8);
-    -webkit-backdrop-filter: blur(40px) saturate(1.8);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.025);
     border-radius: 20px;
     padding: 22px 20px;
     margin-bottom: 32px;
     display: flex;
     flex-direction: column;
     gap: 18px;
-    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .form-section-title {
     font-size: 11px;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.3);
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -1420,7 +1363,7 @@ h1 {
 
 .form-label {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.5);
     font-weight: 500;
     padding-left: 2px;
 }
@@ -1429,11 +1372,11 @@ h1 {
 .add-card-form select {
     width: 100%;
     padding: 12px 16px;
-    background: rgba(255, 255, 255, 0.035);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     border-radius: 12px;
     color: #fff;
     outline: none;
@@ -1443,17 +1386,17 @@ h1 {
 
 .add-card-form input:focus,
 .add-card-form select:focus {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(0, 122, 255, 0.35);
-    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 122, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .add-card-form input::placeholder {
-    color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.25);
 }
 
 .add-card-form select option {
-    background: #1a1a24;
+    background: #1c1c1e;
     color: #fff;
 }
 
@@ -1461,25 +1404,19 @@ h1 {
     padding: 14px 20px;
     border: none;
     border-radius: 14px;
-    background: rgba(0, 122, 255, 0.25);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 122, 255, 0.2);
-    border-bottom: 1px solid rgba(0, 122, 255, 0.1);
+    background: linear-gradient(135deg, #007AFF, #0066d6);
     color: #fff;
     font-weight: 600;
     cursor: pointer;
     font-size: 16px;
     margin-top: 2px;
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    box-shadow: 0 4px 24px rgba(0, 122, 255, 0.12);
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.25);
 }
 
 .add-card-form button[type="submit"]:hover {
-    background: rgba(0, 122, 255, 0.35);
-    border-color: rgba(0, 122, 255, 0.35);
     transform: translateY(-1px);
-    box-shadow: 0 6px 32px rgba(0, 122, 255, 0.2);
+    box-shadow: 0 6px 28px rgba(0, 122, 255, 0.35);
 }
 
 .add-card-form button[type="submit"]:active {
@@ -1497,13 +1434,13 @@ h1 {
     flex: 1;
     min-width: calc(25% - 8px);
     padding: 10px 6px;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 255, 255, 0.04);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 2px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.03);
     border-radius: 14px;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.4);
     cursor: pointer;
     text-align: center;
     font-size: 12px;
@@ -1518,16 +1455,16 @@ h1 {
 }
 
 .card-type-btn:hover {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
     transform: translateY(-1px);
 }
 
 .card-type-btn.active {
-    border-color: rgba(0, 122, 255, 0.4);
+    border-color: #007AFF;
     color: #fff;
-    background: rgba(0, 122, 255, 0.08);
-    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    background: rgba(0, 122, 255, 0.12);
+    box-shadow: 0 4px 16px rgba(0, 122, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 /* ===== 颜色选项 ===== */
@@ -1543,20 +1480,20 @@ h1 {
     height: 34px;
     border-radius: 50%;
     cursor: pointer;
-    border: 2px solid rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.08);
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     flex-shrink: 0;
 }
 
 .color-opt:hover {
     transform: scale(1.08);
-    border-color: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .color-opt.active {
-    border-color: rgba(255, 255, 255, 0.6);
+    border-color: #fff;
     transform: scale(1.12);
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
 }
 
 /* ===== 质感纹理 ===== */
@@ -1572,7 +1509,7 @@ h1 {
     height: 40px;
     border-radius: 10px;
     cursor: pointer;
-    border: 2px solid rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(255, 255, 255, 0.06);
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     position: relative;
     overflow: hidden;
@@ -1581,13 +1518,13 @@ h1 {
 
 .texture-opt:hover {
     transform: scale(1.05);
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
 }
 
 .texture-opt.active {
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: #fff;
     transform: scale(1.08);
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .texture-opt span {
@@ -1597,8 +1534,8 @@ h1 {
     right: 0;
     text-align: center;
     font-size: 9px;
-    color: rgba(255, 255, 255, 0.7);
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 /* ===== 照片上传 ===== */
@@ -1614,12 +1551,12 @@ h1 {
 .photo-upload-btn {
     width: 100%;
     padding: 14px;
-    border: 2px dashed rgba(255, 255, 255, 0.08);
+    border: 2px dashed rgba(255, 255, 255, 0.15);
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: rgba(255, 255, 255, 0.4);
     cursor: pointer;
     text-align: center;
     font-size: 14px;
@@ -1627,14 +1564,14 @@ h1 {
 }
 
 .photo-upload-btn:hover {
-    border-color: rgba(0, 122, 255, 0.25);
-    color: rgba(255, 255, 255, 0.5);
-    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(0, 122, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .photo-upload-btn.has-image {
     border-style: solid;
-    border-color: rgba(52, 199, 89, 0.3);
+    border-color: #34C759;
     color: #34C759;
     padding: 8px;
 }
@@ -1650,7 +1587,7 @@ h1 {
     height: 38px;
     border-radius: 8px;
     object-fit: cover;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .photo-preview-info {
@@ -1665,12 +1602,12 @@ h1 {
 
 .photo-preview-hint {
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .photo-change-btn {
     font-size: 12px;
-    color: rgba(0, 122, 255, 0.6);
+    color: #007AFF;
     background: none;
     border: none;
     cursor: pointer;
@@ -1693,11 +1630,11 @@ h1 {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(0, 122, 255, 0.12);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(0, 122, 255, 0.15);
-    border-bottom: 1px solid rgba(0, 122, 255, 0.08);
+    background: rgba(0, 122, 255, 0.2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 122, 255, 0.3);
+    border-bottom: 1px solid rgba(0, 122, 255, 0.15);
     color: #fff;
     font-size: 22px;
     line-height: 1;
@@ -1705,21 +1642,21 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 24px rgba(0, 122, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     z-index: 200;
 }
 
 .pack-toggle:hover {
     transform: translateX(-50%) scale(1.08);
-    box-shadow: 0 6px 32px rgba(0, 122, 255, 0.2);
+    box-shadow: 0 6px 28px rgba(0, 122, 255, 0.4);
 }
 
 .pack-toggle.expanded {
     transform: translateX(-50%) rotate(45deg);
-    background: rgba(255, 59, 48, 0.12);
-    border-color: rgba(255, 59, 48, 0.2);
-    box-shadow: 0 4px 24px rgba(255, 59, 48, 0.15);
+    background: rgba(255, 59, 48, 0.2);
+    border-color: rgba(255, 59, 48, 0.3);
+    box-shadow: 0 4px 20px rgba(255, 59, 48, 0.3);
 }
 
 .pack-toggle.expanded:hover {
@@ -1734,7 +1671,7 @@ h1 {
 
 .pack-hint {
     text-align: center;
-    color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.25);
     font-size: 12px;
     margin-top: 52px;
     letter-spacing: 0.5px;
@@ -1744,8 +1681,7 @@ h1 {
 .bank-card,
 .transit-card,
 .redeem-card,
-.ticket-card,
-.esim-card {
+.ticket-card {
     position: absolute;
     top: 0;
     left: 0;
@@ -1755,7 +1691,7 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.03);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.04);
     cursor: pointer;
     transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), 
                 z-index 0s 0.4s, 
@@ -1770,33 +1706,31 @@ h1 {
 .bank-card:hover,
 .transit-card:hover,
 .redeem-card:hover,
-.ticket-card:hover,
-.esim-card:hover {
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05);
+.ticket-card:hover {
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
 .bank-card {
     padding: 25px;
 }
+
 .transit-card {
     padding: 22px 25px;
 }
+
 .redeem-card {
     padding: 22px 25px;
 }
+
 .ticket-card {
     padding: 20px 22px;
-}
-.esim-card {
-    padding: 22px 25px;
 }
 
 /* ===== 卡片内部元素 ===== */
 .card-header,
 .transit-header,
 .redeem-header,
-.ticket-header,
-.esim-header {
+.ticket-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -1808,7 +1742,7 @@ h1 {
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 1px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .card-number {
@@ -1816,7 +1750,7 @@ h1 {
     letter-spacing: 2px;
     font-family: monospace;
     margin-top: 10px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     word-break: break-all;
     position: relative;
     z-index: 1;
@@ -1830,7 +1764,7 @@ h1 {
 
 .card-balance-label {
     font-size: 10px;
-    opacity: 0.4;
+    opacity: 0.5;
     letter-spacing: 1px;
 }
 
@@ -1838,7 +1772,7 @@ h1 {
     font-size: 18px;
     font-weight: 700;
     letter-spacing: 0.5px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .card-balance-value .currency-sm {
@@ -1850,13 +1784,13 @@ h1 {
 .card-cvv {
     font-size: 13px;
     letter-spacing: 1px;
-    opacity: 0.6;
+    opacity: 0.7;
     font-family: monospace;
 }
 
 .card-cvv .cvv-label {
     font-size: 10px;
-    opacity: 0.4;
+    opacity: 0.5;
     margin-right: 4px;
 }
 
@@ -1864,8 +1798,8 @@ h1 {
     font-size: 13px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    opacity: 0.7;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    opacity: 0.8;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     position: relative;
     z-index: 1;
 }
@@ -1879,10 +1813,10 @@ h1 {
 }
 
 .card-delete {
-    background: rgba(255, 0, 0, 0.2);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 0, 0, 0.1);
+    background: rgba(255, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 0, 0, 0.2);
     color: #fff;
     width: 26px;
     height: 26px;
@@ -1892,26 +1826,26 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.3;
+    opacity: 0.4;
     transition: all 0.3s ease;
 }
 
 .card-delete:hover {
-    opacity: 0.8;
-    background: rgba(255, 0, 0, 0.35);
+    opacity: 1;
+    background: rgba(255, 0, 0, 0.6);
     transform: scale(1.08);
 }
 
 .card-logo {
     height: 24px;
     width: auto;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .card-brand-tag {
     font-size: 9px;
     font-weight: 700;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     padding: 2px 8px;
@@ -1924,13 +1858,13 @@ h1 {
     font-size: 17px;
     font-weight: 700;
     letter-spacing: 0.5px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .transit-type-tag {
     font-size: 10px;
     font-weight: 600;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     padding: 2px 8px;
@@ -1947,7 +1881,7 @@ h1 {
 
 .transit-balance-label {
     font-size: 11px;
-    opacity: 0.5;
+    opacity: 0.6;
     letter-spacing: 1px;
 }
 
@@ -1955,7 +1889,7 @@ h1 {
     font-size: 32px;
     font-weight: 800;
     letter-spacing: 1px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .transit-balance-value .currency-sm {
@@ -1975,13 +1909,13 @@ h1 {
 .transit-number {
     font-size: 12px;
     font-family: monospace;
-    opacity: 0.5;
+    opacity: 0.6;
     letter-spacing: 1px;
 }
 
 .transit-nfc {
     font-size: 22px;
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 .transit-card.suica .suica-logo {
@@ -1997,12 +1931,12 @@ h1 {
     font-size: 13px;
     font-weight: 800;
     color: #fff;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     padding: 2px 8px;
     border-radius: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* ===== 兑换卡 ===== */
@@ -2010,13 +1944,13 @@ h1 {
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 0.5px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .redeem-type-tag {
     font-size: 10px;
     font-weight: 600;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     padding: 2px 8px;
@@ -2035,7 +1969,7 @@ h1 {
     font-family: monospace;
     letter-spacing: 2px;
     word-break: break-all;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     line-height: 1.6;
 }
 
@@ -2050,7 +1984,7 @@ h1 {
 .redeem-value {
     font-size: 20px;
     font-weight: 800;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .redeem-value .currency-sm {
@@ -2067,17 +2001,17 @@ h1 {
 }
 
 .redeem-status.active {
-    background: rgba(52, 199, 89, 0.15);
+    background: rgba(52, 199, 89, 0.2);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     color: #34C759;
 }
 
 .redeem-status.used {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.4);
 }
 
 /* ===== 机票 ===== */
@@ -2085,13 +2019,13 @@ h1 {
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.5px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .ticket-flight-tag {
     font-size: 10px;
     font-weight: 600;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     padding: 2px 8px;
@@ -2111,12 +2045,12 @@ h1 {
 .ticket-city {
     font-size: 26px;
     font-weight: 800;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .ticket-arrow {
     font-size: 18px;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 .ticket-info-row {
@@ -2133,7 +2067,7 @@ h1 {
 
 .ticket-info-label {
     font-size: 9px;
-    opacity: 0.4;
+    opacity: 0.5;
     letter-spacing: 1px;
 }
 
@@ -2146,7 +2080,7 @@ h1 {
 .ticket-divider {
     width: 100%;
     height: 1px;
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.1);
     position: relative;
     z-index: 1;
     margin: 2px 0;
@@ -2164,168 +2098,29 @@ h1 {
 .ticket-passenger {
     font-size: 11px;
     letter-spacing: 1px;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 .ticket-class {
     font-size: 10px;
     font-weight: 600;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     padding: 2px 8px;
     border-radius: 4px;
 }
-
-/* ===== eSIM 卡片 ===== */
-.esim-provider {
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.esim-status-tag {
-    font-size: 10px;
-    font-weight: 600;
-    padding: 2px 10px;
-    border-radius: 6px;
-    letter-spacing: 0.5px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-
-.esim-status-tag.active {
-    background: rgba(52, 199, 89, 0.15);
-    color: #34C759;
-}
-.esim-status-tag.inactive {
-    background: rgba(255, 149, 0, 0.15);
-    color: #FF9500;
-}
-.esim-status-tag.expired {
-    background: rgba(255, 59, 48, 0.15);
-    color: #FF3B30;
-}
-
-.esim-plan-info {
-    text-align: center;
-    padding: 6px 0;
-    position: relative;
-    z-index: 1;
-}
-
-.esim-plan-name {
-    font-size: 14px;
-    font-weight: 500;
-    opacity: 0.7;
-    letter-spacing: 0.5px;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
-}
-
-.esim-data-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 4px 0;
-    position: relative;
-    z-index: 1;
-}
-
-.esim-data-item {
-    text-align: center;
-}
-
-.esim-data-label {
-    font-size: 9px;
-    opacity: 0.4;
-    letter-spacing: 1px;
-}
-
-.esim-data-value {
-    font-size: 20px;
-    font-weight: 700;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-}
-
-.esim-data-value .data-unit {
-    font-size: 12px;
-    font-weight: 500;
-    opacity: 0.6;
-}
-
-.esim-data-divider {
-    width: 1px;
-    height: 30px;
-    background: rgba(255, 255, 255, 0.06);
-}
-
-.esim-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    position: relative;
-    z-index: 1;
-}
-
-.esim-iccid {
-    font-size: 11px;
-    font-family: monospace;
-    opacity: 0.4;
-    letter-spacing: 1px;
-}
-
-.esim-region-tag {
-    font-size: 10px;
-    font-weight: 600;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 2px 8px;
-    border-radius: 4px;
-    letter-spacing: 0.5px;
-}
-
-.esim-network-badge {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 12px;
-    font-weight: 600;
-    opacity: 0.6;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
-}
-
-.esim-network-badge .signal-bars {
-    display: flex;
-    gap: 2px;
-    align-items: flex-end;
-    height: 14px;
-}
-
-.esim-network-badge .signal-bar {
-    width: 3px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 1px;
-}
-
-.esim-network-badge .signal-bar:nth-child(1) { height: 4px; }
-.esim-network-badge .signal-bar:nth-child(2) { height: 7px; }
-.esim-network-badge .signal-bar:nth-child(3) { height: 10px; }
-.esim-network-badge .signal-bar:nth-child(4) { height: 13px; }
 
 /* ===== 卡片展开状态 ===== */
 .card-stack.expanded .bank-card:hover,
 .card-stack.expanded .transit-card:hover,
 .card-stack.expanded .redeem-card:hover,
-.card-stack.expanded .ticket-card:hover,
-.card-stack.expanded .esim-card:hover {
+.card-stack.expanded .ticket-card:hover {
     transform: translateY(-20px) scale(1.04) !important;
     z-index: 99 !important;
 }
 
-/* ===== 弹窗通用 - 高透明 ===== */
+/* ===== 弹窗通用 ===== */
 .modal-overlay,
 .result-overlay,
 .transfer-overlay,
@@ -2338,9 +2133,9 @@ h1 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     display: none;
     align-items: center;
     justify-content: center;
@@ -2361,20 +2156,20 @@ h1 {
     display: block;
 }
 
-/* ===== 支付弹窗 - 高透明 ===== */
+/* ===== 支付弹窗 ===== */
 .password-box {
-    background: rgba(20, 20, 30, 0.5);
-    backdrop-filter: blur(60px) saturate(2);
-    -webkit-backdrop-filter: blur(60px) saturate(2);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    background: rgba(28, 28, 30, 0.85);
+    backdrop-filter: blur(40px) saturate(1.8);
+    -webkit-backdrop-filter: blur(40px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 24px;
     padding: 30px 20px;
     text-align: center;
     color: #fff;
     width: 90%;
     max-width: 360px;
-    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .password-box h3 {
@@ -2386,7 +2181,7 @@ h1 {
 
 .password-box p {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.5);
     margin-bottom: 15px;
 }
 
@@ -2396,7 +2191,7 @@ h1 {
 
 .pay-amount-label {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.4);
     margin-bottom: 8px;
 }
 
@@ -2405,14 +2200,14 @@ h1 {
     align-items: baseline;
     justify-content: center;
     gap: 2px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.08);
     padding-bottom: 8px;
     margin-bottom: 16px;
     transition: border-color 0.3s ease;
 }
 
 .pay-amount-input-wrapper:focus-within {
-    border-color: rgba(0, 122, 255, 0.4);
+    border-color: #007AFF;
 }
 
 .pay-currency {
@@ -2434,7 +2229,7 @@ h1 {
 }
 
 .pay-amount-input::placeholder {
-    color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.15);
     font-weight: 400;
     font-size: 28px;
 }
@@ -2453,14 +2248,14 @@ h1 {
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.4);
     margin-bottom: 8px;
 }
 
 .pay-card-tag {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.06);
     color: #fff;
     padding: 3px 10px;
     border-radius: 6px;
@@ -2479,23 +2274,23 @@ h1 {
     flex: 1;
     max-width: 48px;
     aspect-ratio: 0.9;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 24px;
     transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.015);
+    background: rgba(255, 255, 255, 0.03);
 }
 
 .pwd-dot.filled {
-    background: rgba(0, 122, 255, 0.4);
+    background: #007AFF;
 }
 
 .pwd-dot.active {
-    border-color: rgba(0, 122, 255, 0.4);
-    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.06);
+    border-color: #007AFF;
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
 }
 
 .hidden-input {
@@ -2508,7 +2303,7 @@ h1 {
 .cancel-btn {
     background: none;
     border: none;
-    color: rgba(0, 122, 255, 0.8);
+    color: #007AFF;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -2517,23 +2312,23 @@ h1 {
 }
 
 .cancel-btn:hover {
-    opacity: 0.6;
+    opacity: 0.7;
 }
 
 /* ===== 结果弹窗 ===== */
 .result-box {
-    background: rgba(20, 20, 30, 0.5);
-    backdrop-filter: blur(60px) saturate(2);
-    -webkit-backdrop-filter: blur(60px) saturate(2);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    background: rgba(28, 28, 30, 0.85);
+    backdrop-filter: blur(40px) saturate(1.8);
+    -webkit-backdrop-filter: blur(40px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 24px;
     padding: 30px 24px;
     text-align: center;
     color: #fff;
     width: 90%;
     max-width: 340px;
-    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     animation: resultPop 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -2560,12 +2355,12 @@ h1 {
 }
 
 .result-icon.success {
-    background: rgba(52, 199, 89, 0.1);
+    background: rgba(52, 199, 89, 0.15);
     color: #34C759;
 }
 
 .result-icon.fail {
-    background: rgba(255, 59, 48, 0.1);
+    background: rgba(255, 59, 48, 0.15);
     color: #FF3B30;
 }
 
@@ -2591,13 +2386,13 @@ h1 {
 
 .result-detail {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.4);
     line-height: 1.8;
     margin-bottom: 20px;
 }
 
 .result-detail span {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 500;
 }
 
@@ -2613,42 +2408,38 @@ h1 {
 }
 
 .result-btn.success {
-    background: rgba(0, 122, 255, 0.25);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 122, 255, 0.15);
+    background: #007AFF;
     color: #fff;
-    box-shadow: 0 4px 24px rgba(0, 122, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.25);
 }
 
 .result-btn.success:hover {
-    background: rgba(0, 122, 255, 0.35);
     transform: translateY(-1px);
-    box-shadow: 0 6px 32px rgba(0, 122, 255, 0.15);
+    box-shadow: 0 6px 28px rgba(0, 122, 255, 0.35);
 }
 
 .result-btn.fail {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.06);
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* ===== 转账/充值弹窗 ===== */
 .transfer-box,
 .xfer-box,
 .buy-redeem-box {
-    background: rgba(20, 20, 30, 0.5);
-    backdrop-filter: blur(60px) saturate(2);
-    -webkit-backdrop-filter: blur(60px) saturate(2);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    background: rgba(28, 28, 30, 0.85);
+    backdrop-filter: blur(40px) saturate(1.8);
+    -webkit-backdrop-filter: blur(40px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 24px;
     padding: 30px 20px;
     text-align: center;
     color: #fff;
     width: 90%;
     max-width: 360px;
-    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     animation: resultPop 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -2664,7 +2455,7 @@ h1 {
 .xfer-box p,
 .buy-redeem-box p {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.5);
     margin-bottom: 16px;
 }
 
@@ -2674,18 +2465,18 @@ h1 {
     align-items: baseline;
     justify-content: center;
     gap: 2px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.08);
     padding-bottom: 8px;
     margin-bottom: 16px;
     transition: border-color 0.3s ease;
 }
 
 .transfer-amount-input-wrapper:focus-within {
-    border-color: rgba(52, 199, 89, 0.4);
+    border-color: #34C759;
 }
 
 .xfer-amount-input-wrapper:focus-within {
-    border-color: rgba(255, 149, 0, 0.4);
+    border-color: #FF9500;
 }
 
 .transfer-currency,
@@ -2709,7 +2500,7 @@ h1 {
 
 .transfer-amount-input::placeholder,
 .xfer-amount-input::placeholder {
-    color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.15);
     font-weight: 400;
     font-size: 28px;
 }
@@ -2729,9 +2520,9 @@ h1 {
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .transfer-btn-row,
@@ -2747,10 +2538,10 @@ h1 {
 .buy-redeem-cancel-btn {
     flex: 1;
     padding: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.02);
-    color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.6);
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
@@ -2760,7 +2551,7 @@ h1 {
 .transfer-cancel-btn:hover,
 .xfer-cancel-btn:hover,
 .buy-redeem-cancel-btn:hover {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .transfer-confirm-btn {
@@ -2768,27 +2559,23 @@ h1 {
     padding: 12px;
     border: none;
     border-radius: 14px;
-    background: rgba(52, 199, 89, 0.25);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(52, 199, 89, 0.15);
+    background: #34C759;
     color: #fff;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 24px rgba(52, 199, 89, 0.08);
+    box-shadow: 0 4px 20px rgba(52, 199, 89, 0.25);
 }
 
 .transfer-confirm-btn:hover {
-    background: rgba(52, 199, 89, 0.35);
     transform: translateY(-1px);
-    box-shadow: 0 6px 32px rgba(52, 199, 89, 0.12);
+    box-shadow: 0 6px 28px rgba(52, 199, 89, 0.35);
 }
 
 .transfer-confirm-btn:disabled {
-    background: rgba(255, 255, 255, 0.04);
-    color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.2);
     box-shadow: none;
     cursor: not-allowed;
 }
@@ -2801,8 +2588,8 @@ h1 {
     gap: 12px;
     margin-bottom: 16px;
     padding: 14px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .xfer-card-box {
@@ -2822,7 +2609,7 @@ h1 {
 
 .xfer-card-last4 {
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.3);
     font-family: monospace;
 }
 
@@ -2834,17 +2621,17 @@ h1 {
 
 .xfer-target-label {
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.3);
     margin-bottom: 6px;
 }
 
 .xfer-target-select {
     width: 100%;
     padding: 10px;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     font-size: 14px;
     color: #fff;
@@ -2854,12 +2641,12 @@ h1 {
 }
 
 .xfer-target-select:focus {
-    border-color: rgba(255, 149, 0, 0.25);
-    box-shadow: 0 0 0 4px rgba(255, 149, 0, 0.04);
+    border-color: rgba(255, 149, 0, 0.4);
+    box-shadow: 0 0 0 3px rgba(255, 149, 0, 0.1);
 }
 
 .xfer-target-select option {
-    background: #1a1a24;
+    background: #1c1c1e;
     color: #fff;
 }
 
@@ -2868,34 +2655,30 @@ h1 {
     padding: 12px;
     border: none;
     border-radius: 14px;
-    background: rgba(255, 149, 0, 0.25);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 149, 0, 0.15);
+    background: #FF9500;
     color: #fff;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 24px rgba(255, 149, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(255, 149, 0, 0.25);
 }
 
 .xfer-confirm-btn:hover {
-    background: rgba(255, 149, 0, 0.35);
     transform: translateY(-1px);
-    box-shadow: 0 6px 32px rgba(255, 149, 0, 0.12);
+    box-shadow: 0 6px 28px rgba(255, 149, 0, 0.35);
 }
 
 .xfer-confirm-btn:disabled {
-    background: rgba(255, 255, 255, 0.04);
-    color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.2);
     box-shadow: none;
     cursor: not-allowed;
 }
 
 /* ===== 购买兑换卡 ===== */
 .buy-redeem-box .form-section-title {
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .redeem-amount-grid {
@@ -2907,7 +2690,7 @@ h1 {
 
 .redeem-amount-opt {
     padding: 16px 8px;
-    border: 2px solid rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(255, 255, 255, 0.06);
     border-radius: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -2915,14 +2698,14 @@ h1 {
 }
 
 .redeem-amount-opt:hover {
-    border-color: rgba(255, 204, 0, 0.15);
-    background: rgba(255, 204, 0, 0.02);
+    border-color: rgba(255, 204, 0, 0.3);
+    background: rgba(255, 204, 0, 0.03);
 }
 
 .redeem-amount-opt.active {
-    border-color: rgba(255, 204, 0, 0.3);
-    background: rgba(255, 204, 0, 0.05);
-    box-shadow: 0 4px 20px rgba(255, 204, 0, 0.04);
+    border-color: #FFCC00;
+    background: rgba(255, 204, 0, 0.08);
+    box-shadow: 0 4px 16px rgba(255, 204, 0, 0.1);
 }
 
 .redeem-amount-val {
@@ -2933,7 +2716,7 @@ h1 {
 
 .redeem-amount-unit {
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.3);
     margin-top: 2px;
 }
 
@@ -2941,10 +2724,10 @@ h1 {
 .redeem-pay-source-select {
     width: 100%;
     padding: 10px;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     font-size: 14px;
     color: #fff;
@@ -2955,29 +2738,29 @@ h1 {
 
 .redeem-currency-select:focus,
 .redeem-pay-source-select:focus {
-    border-color: rgba(255, 204, 0, 0.25);
-    box-shadow: 0 0 0 4px rgba(255, 204, 0, 0.04);
+    border-color: rgba(255, 204, 0, 0.4);
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.1);
 }
 
 .redeem-currency-select option,
 .redeem-pay-source-select option {
-    background: #1a1a24;
+    background: #1c1c1e;
     color: #fff;
 }
 
 .buy-redeem-info {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.4);
     margin-bottom: 12px;
     padding: 10px;
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 10px;
     line-height: 1.6;
 }
 
 .buy-redeem-info span {
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .buy-redeem-confirm-btn {
@@ -2985,27 +2768,23 @@ h1 {
     padding: 12px;
     border: none;
     border-radius: 14px;
-    background: rgba(255, 204, 0, 0.2);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 204, 0, 0.12);
-    color: #fff;
+    background: #FFCC00;
+    color: #000;
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 24px rgba(255, 204, 0, 0.06);
+    box-shadow: 0 4px 20px rgba(255, 204, 0, 0.2);
 }
 
 .buy-redeem-confirm-btn:hover {
-    background: rgba(255, 204, 0, 0.3);
     transform: translateY(-1px);
-    box-shadow: 0 6px 32px rgba(255, 204, 0, 0.1);
+    box-shadow: 0 6px 28px rgba(255, 204, 0, 0.3);
 }
 
 .buy-redeem-confirm-btn:disabled {
-    background: rgba(255, 255, 255, 0.04);
-    color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.2);
     box-shadow: none;
     cursor: not-allowed;
 }
@@ -3016,10 +2795,10 @@ h1 {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(20, 20, 30, 0.5);
-    backdrop-filter: blur(60px) saturate(2);
-    -webkit-backdrop-filter: blur(60px) saturate(2);
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: rgba(28, 28, 30, 0.85);
+    backdrop-filter: blur(40px) saturate(1.8);
+    -webkit-backdrop-filter: blur(40px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-bottom: none;
     border-radius: 20px 20px 0 0;
     padding: 20px;
@@ -3027,7 +2806,7 @@ h1 {
     display: none;
     flex-direction: column;
     gap: 8px;
-    box-shadow: 0 -4px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 -4px 40px rgba(0, 0, 0, 0.4);
     animation: slideUp 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -3050,7 +2829,7 @@ h1 {
     align-items: center;
     margin-bottom: 12px;
     padding-bottom: 12px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .card-action-header .card-bank-name {
@@ -3061,7 +2840,7 @@ h1 {
 
 .card-action-header .card-last4 {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.3);
     font-family: monospace;
 }
 
@@ -3079,7 +2858,7 @@ h1 {
 }
 
 .card-action-item:hover {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .card-action-item .action-icon {
@@ -3094,31 +2873,31 @@ h1 {
 }
 
 .action-icon.pay {
-    background: rgba(0, 122, 255, 0.08);
+    background: rgba(0, 122, 255, 0.12);
     color: #007AFF;
 }
 .action-icon.income {
-    background: rgba(52, 199, 89, 0.08);
+    background: rgba(52, 199, 89, 0.12);
     color: #34C759;
 }
 .action-icon.transfer {
-    background: rgba(255, 149, 0, 0.08);
+    background: rgba(255, 149, 0, 0.12);
     color: #FF9500;
 }
 .action-icon.delete {
-    background: rgba(255, 59, 48, 0.08);
+    background: rgba(255, 59, 48, 0.12);
     color: #FF3B30;
 }
 .action-icon.topup {
-    background: rgba(175, 82, 222, 0.08);
+    background: rgba(175, 82, 222, 0.12);
     color: #AF52DE;
 }
 .action-icon.transit-pay {
-    background: rgba(0, 122, 255, 0.08);
+    background: rgba(0, 122, 255, 0.12);
     color: #007AFF;
 }
 .action-icon.redeem-use {
-    background: rgba(255, 204, 0, 0.08);
+    background: rgba(255, 204, 0, 0.12);
     color: #FFCC00;
 }
 
@@ -3132,7 +2911,7 @@ h1 {
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 12px;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     letter-spacing: -0.3px;
 }
 
@@ -3143,11 +2922,11 @@ h1 {
 }
 
 .transaction-item {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.015);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
     border-radius: 14px;
     padding: 14px 16px;
     display: flex;
@@ -3157,8 +2936,8 @@ h1 {
 }
 
 .transaction-item:hover {
-    background: rgba(255, 255, 255, 0.035);
-    border-color: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.06);
 }
 
 .tx-left {
@@ -3175,7 +2954,7 @@ h1 {
 
 .tx-time {
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .tx-amount {
@@ -3193,25 +2972,25 @@ h1 {
 
 .tx-empty {
     text-align: center;
-    color: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.2);
     font-size: 13px;
     padding: 20px;
 }
 
 /* ===== CAPTCHA 验证码 ===== */
 .captcha-box {
-    background: rgba(20, 20, 30, 0.5);
-    backdrop-filter: blur(60px) saturate(2);
-    -webkit-backdrop-filter: blur(60px) saturate(2);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    background: rgba(28, 28, 30, 0.85);
+    backdrop-filter: blur(40px) saturate(1.8);
+    -webkit-backdrop-filter: blur(40px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 24px;
     padding: 28px 24px;
     text-align: center;
     color: #fff;
     width: 90%;
     max-width: 340px;
-    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     animation: resultPop 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -3224,13 +3003,13 @@ h1 {
 
 .captcha-box p {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.5);
     margin-bottom: 16px;
 }
 
 .captcha-display {
-    background: rgba(255, 255, 255, 0.03);
-    border: 2px solid rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(255, 255, 255, 0.06);
     border-radius: 14px;
     padding: 16px 20px;
     margin-bottom: 16px;
@@ -3245,8 +3024,8 @@ h1 {
     background: repeating-linear-gradient(45deg,
             transparent,
             transparent 8px,
-            rgba(255, 255, 255, 0.01) 8px,
-            rgba(255, 255, 255, 0.01) 16px);
+            rgba(255, 255, 255, 0.02) 8px,
+            rgba(255, 255, 255, 0.02) 16px);
     pointer-events: none;
 }
 
@@ -3270,9 +3049,9 @@ h1 {
     position: absolute;
     top: 8px;
     right: 10px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.5);
     font-size: 20px;
     padding: 2px 8px;
     border-radius: 6px;
@@ -3282,7 +3061,7 @@ h1 {
 }
 
 .captcha-refresh:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.1);
     color: #fff;
 }
 
@@ -3296,13 +3075,13 @@ h1 {
 .captcha-char-input {
     width: 44px;
     height: 52px;
-    border: 2px solid rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     text-align: center;
     font-size: 22px;
     font-weight: 700;
     color: #fff;
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.04);
     outline: none;
     font-family: 'Courier New', monospace;
     text-transform: uppercase;
@@ -3310,9 +3089,9 @@ h1 {
 }
 
 .captcha-char-input:focus {
-    border-color: rgba(0, 122, 255, 0.25);
-    background: rgba(255, 255, 255, 0.04);
-    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.04);
+    border-color: rgba(0, 122, 255, 0.4);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
 }
 
 .captcha-char-input.error {
@@ -3348,10 +3127,10 @@ h1 {
 .captcha-cancel-btn {
     flex: 1;
     padding: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.02);
-    color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.6);
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
@@ -3359,7 +3138,7 @@ h1 {
 }
 
 .captcha-cancel-btn:hover {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .captcha-confirm-btn {
@@ -3367,22 +3146,18 @@ h1 {
     padding: 12px;
     border: none;
     border-radius: 14px;
-    background: rgba(0, 122, 255, 0.25);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 122, 255, 0.15);
+    background: #007AFF;
     color: #fff;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 24px rgba(0, 122, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.25);
 }
 
 .captcha-confirm-btn:hover {
-    background: rgba(0, 122, 255, 0.35);
     transform: translateY(-1px);
-    box-shadow: 0 6px 32px rgba(0, 122, 255, 0.12);
+    box-shadow: 0 6px 28px rgba(0, 122, 255, 0.35);
 }
 
 /* ===== Toast 提示 ===== */
@@ -3391,10 +3166,9 @@ h1 {
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%) translateY(20px);
-    background: rgba(52, 199, 89, 0.15);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(52, 199, 89, 0.1);
+    background: rgba(52, 199, 89, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     color: #fff;
     padding: 10px 24px;
     border-radius: 20px;
@@ -3403,7 +3177,8 @@ h1 {
     opacity: 0;
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     z-index: 999;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 24px rgba(52, 199, 89, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .save-toast.show {
@@ -3451,8 +3226,7 @@ h1 {
     .bank-card,
     .transit-card,
     .redeem-card,
-    .ticket-card,
-    .esim-card {
+    .ticket-card {
         padding: 18px;
         border-radius: 14px;
     }
@@ -3520,12 +3294,6 @@ h1 {
     .texture-opt {
         width: 48px;
         height: 34px;
-    }
-    .esim-data-value {
-        font-size: 17px;
-    }
-    .esim-data-row {
-        gap: 12px;
     }
 }
 </style>
